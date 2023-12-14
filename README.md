@@ -16,7 +16,7 @@ The project includes a provision to save snapshots of frames with detected forei
 
 Ultimately, the release of the video capture stream and the closure of OpenCV windows conclude the project. Parameter adjustments, such as minimum contour area and dilate iterations, can be tailored to specific project requisites. Additionally, ensuring the validity of the file path for saving detected objects is imperative for project functionality.
 <p align="center">
-  <img src=" ![image](https://github.com/SK-Tareen/Foreign-object-detection-CV-/assets/87571978/6861c63f-8c43-41a7-927a-4e8a1cbc2771)" alt="Your Image Description" width="300" />
+  <img src="https://github.com/SK-Tareen/Foreign-object-detection-CV-/assets/87571978/6861c63f-8c43-41a7-927a-4e8a1cbc2771" alt="Your Image Description" width="300" />
 </p>
 
 #Dependencies and System Requirements:
