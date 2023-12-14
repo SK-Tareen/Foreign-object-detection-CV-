@@ -1,4 +1,8 @@
 # Foreign-object-detection-CV
+Project by: 
+1. Sania Khan Tareen 332190
+2. Maheen Salman 342603
+3. Minahil Shafqat 331805
 ## Abstract
 This project implements a real-time motion detection system using Python and OpenCV, designed for surveillance and security applications. The system captures video frames from a camera, establishes a dynamic background model, and identifies areas with significant motion by calculating the difference between consecutive frames. Detected motion triggers the drawing of bounding boxes around the moving objects and the display of a descriptive text label. The project provides an option to save snapshots of the detected motion, each file named with a timestamp and an index. 
 
