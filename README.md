@@ -19,15 +19,15 @@ Ultimately, the release of the video capture stream and the closure of OpenCV wi
   <img src="https://github.com/SK-Tareen/Foreign-object-detection-CV-/assets/87571978/6861c63f-8c43-41a7-927a-4e8a1cbc2771" alt="Your Image Description" width="300" />
 </p>
 
-#Dependencies and System Requirements:
-#Dependencies:
+## Dependencies and System Requirements:
+## Dependencies:
 
 Python 3.x
 OpenCV (cv2)
 imutils
 datetime
 
-#System Requirements:
+## System Requirements:
 
 Webcam or camera device accessible by OpenCV.
 Sufficient processing power to handle real-time video processing.
