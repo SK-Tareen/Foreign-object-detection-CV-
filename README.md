@@ -22,10 +22,10 @@ Ultimately, the release of the video capture stream and the closure of OpenCV wi
 ## Dependencies and System Requirements:
 ## Dependencies:
 
-1. Python 3.x
-2. OpenCV (cv2)
-3. imutils
-4. datetime
+- Python 3.x
+- OpenCV (cv2)
+- imutils
+- datetime
 
 ## System Requirements:
 
