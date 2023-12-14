@@ -4,7 +4,7 @@ This project implements a real-time motion detection system using Python and Ope
 
 The application demonstrates the fundamental principles of motion detection and serves as a foundation for more advanced security and surveillance solutions. The system is configurable, allowing users to adjust parameters such as motion sensitivity and the minimum duration of detected motion required to trigger snapshot capture. Overall, this project offers a versatile and customizable motion detection tool for various security and monitoring scenarios.
 ## Methodology
-In this project, we use OpenCV and  acquire frames from any video. Each frame  is used to discern and accentuate foreign objects. We monitor consecutive frames with identified motion and use a 'minCounter' to establish the minimum number of consecutive frames necessary to initiate object detection.
+In this project, we use OpenCV and  acquire frames from any video. Each frame  is used to discern and accentuate foreign objects. We monitor consecutive frames with identified motion and use a #'minCounter'# to establish the minimum number of consecutive frames necessary to initiate object detection.
 
 The initiation of the background model involves the accumulation of a weighted average of grayscale frames, with continuous updates as frames are processed. Motion detection is computed by taking the absolute difference between the current frame and the background model, followed by thresholding the delta image and dilating the thresholded image to highlight regions with detected motion. In this way, we identify contours  and draw corresponding bounding boxes labeled "Foreign Object Detected". 
 
