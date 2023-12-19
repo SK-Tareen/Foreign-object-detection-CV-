@@ -11,15 +11,6 @@ minCounter = 20
 
 cv2.namedWindow('Object_Detector', cv2.WINDOW_NORMAL)
 
-# Parameters for Lucas-Kanade method
-lk_params = dict(winSize=(15, 15),
-                 maxLevel=2,
-                 criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
-
-prev_gray = None
-prev_pts = None
-
-x, y = 0, 0  # Initialize x, y outside the loop
 
 while True:
     ret, frame = cap.read()
