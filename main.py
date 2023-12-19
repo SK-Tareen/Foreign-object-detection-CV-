@@ -64,15 +64,4 @@ while True:
                             cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
             
 
-    cv2.imshow("Object_Detector", frame)
-    key = cv2.waitKey(1) & 0xFF
-
-    if key == ord("q"):
-        break
-
-    prev_gray = gray.copy()
-    prev_pts = cv2.goodFeaturesToTrack(prev_gray, mask=None, maxCorners=100, qualityLevel=0.3,
-                                       minDistance=7, blockSize=7)
-
-cap.release()
-cv2.destroyAllWindows()
+  
