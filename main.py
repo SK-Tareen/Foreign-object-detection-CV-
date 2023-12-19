@@ -19,6 +19,8 @@ lk_params = dict(winSize=(15, 15),
 prev_gray = None
 prev_pts = None
 
+x, y = 0, 0  # Initialize x, y outside the loop
+
 while True:
     ret, frame = cap.read()
     frame = cv2.resize(frame, (640, 480), interpolation=cv2.INTER_LINEAR)
@@ -35,20 +37,18 @@ while True:
 
     thresh = cv2.threshold(frameDelta, 5, 255, cv2.THRESH_BINARY)[1]
     thresh = cv2.dilate(thresh, None, iterations=2)
-    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
-                            cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
 
     for c in cnts:
         if cv2.contourArea(c) < 10000:
             continue
 
-        (x, y, w, h) = cv2.boundingRect(c)
+        x, y, w, h = cv2.boundingRect(c)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         text = "Foreign Object Detected"
 
-        cv2.putText(frame, text, (30, 40),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+        cv2.putText(frame, text, (30, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
         motionCounter += 1
         if motionCounter >= minCounter:
             idx += 1
@@ -62,15 +62,41 @@ while True:
         pts, status, _ = cv2.calcOpticalFlowPyrLK(prev_gray, gray, prev_pts, None, **lk_params)
 
         if pts is not None and prev_pts is not None:
+            speeds = []  # List to store speeds of keypoints
+            
             for i, (new, old) in enumerate(zip(pts, prev_pts)):
                 a, b = new.ravel().astype(int)
                 c, d = old.ravel().astype(int)
-                cv2.line(frame, (a, b), (c, d), (0, 0, 255), 2)
-                cv2.circle(frame, (a, b), 5, (0, 0, 255), -1)
                 
-                # Draw lines to indicate direction of motion
-                mask = cv2.line(np.zeros_like(frame), (a, b), (c, d), (0, 255, 0), 2)
-                frame = cv2.add(frame, mask)
+                # Calculate Euclidean distance between points
+                distance = np.sqrt((c - a) ** 2 + (d - b) ** 2)
+                
+                # Calculate speed (distance / time)
+                speed = distance  # Assuming each frame is one unit of time (frame-to-frame distance)
+                speeds.append(speed)
+                
+                # Calculate angle of motion
+                angle = np.arctan2(d - b, c - a) * 180 / np.pi
+                if angle < 0:
+                    angle += 360
+                
+                # Display angle as text in the top-left corner of the frame
+              # Inside the optical flow loop for displaying angle
+                cv2.putText(frame, f"Angle: {angle:.1f} deg", (20, 30),
+                              cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
+
+# Calculate average speed
+if len(speeds) > 0:
+    average_speed = np.mean(speeds)
+    cv2.putText(frame, f"Avg Speed: {average_speed:.2f} px/frame", (20, 70),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
+
+            
+            # Calculate average speed
+            if len(speeds) > 0:
+                average_speed = np.mean(speeds)
+                cv2.putText(frame, f"Avg Speed: {average_speed:.2f} px/frame", (20, 60),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
 
     prev_gray = gray.copy()
     prev_pts = cv2.goodFeaturesToTrack(prev_gray, mask=None, maxCorners=100, qualityLevel=0.3,
