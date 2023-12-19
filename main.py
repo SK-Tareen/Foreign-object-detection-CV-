@@ -1,6 +1,7 @@
 import cv2
 import imutils
 import datetime
+import numpy as np
 
 cap = cv2.VideoCapture(0)
 avg = None
@@ -66,6 +67,10 @@ while True:
                 c, d = old.ravel().astype(int)
                 cv2.line(frame, (a, b), (c, d), (0, 0, 255), 2)
                 cv2.circle(frame, (a, b), 5, (0, 0, 255), -1)
+                
+                # Draw lines to indicate direction of motion
+                mask = cv2.line(np.zeros_like(frame), (a, b), (c, d), (0, 255, 0), 2)
+                frame = cv2.add(frame, mask)
 
     prev_gray = gray.copy()
     prev_pts = cv2.goodFeaturesToTrack(prev_gray, mask=None, maxCorners=100, qualityLevel=0.3,
@@ -79,4 +84,3 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-
