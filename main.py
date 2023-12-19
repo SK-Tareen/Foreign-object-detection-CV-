@@ -90,11 +90,6 @@ while True:
                 cv2.putText(frame, f"Avg Speed: {average_speed:.2f} px/frame", (20, frame.shape[0] - 20),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
             
-            # Display direction coordinates
-            if len(directions) > 0:
-                direction_x, direction_y = np.mean(np.array(directions), axis=0)
-                cv2.putText(frame, f"Direction: ({direction_x:.2f}, {direction_y:.2f})", (20, frame.shape[0] - 50),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
 
     cv2.imshow("Object_Detector", frame)
     key = cv2.waitKey(1) & 0xFF
