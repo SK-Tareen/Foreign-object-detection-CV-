@@ -60,18 +60,7 @@ while True:
                 a, b = new.ravel().astype(int)
                 c, d = old.ravel().astype(int)
                 
-                # Calculate Euclidean distance between points
-                distance = np.sqrt((c - a) ** 2 + (d - b) ** 2)
-                
-                # Calculate speed (distance / time)
-                speed = distance  # Assuming each frame is one unit of time (frame-to-frame distance)
-                speeds.append(speed)
-                
-                # Calculate direction coordinates
-                direction_x = c - a
-                direction_y = d - b
-                directions.append((direction_x, direction_y))
-
+               
                 # Draw an arrow to show the optical flow direction
                 mask = cv2.arrowedLine(frame, (a, b), (c, d), (0, 0, 255), 2)
 
