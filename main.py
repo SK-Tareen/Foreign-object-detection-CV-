@@ -41,13 +41,6 @@ while True:
 
         cv2.putText(frame, text, (30, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
         motionCounter += 1
-        if motionCounter >= minCounter:
-            idx += 1
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f'C:/Users/hp/Desktop/FOD internship/time stamp/{timestamp}_{idx}.jpg'
-            cv2.imwrite(filename, frame)
-            motionCounter = 0
-
     if prev_gray is not None:
         # Calculate optical flow
         pts, status, _ = cv2.calcOpticalFlowPyrLK(prev_gray, gray, prev_pts, None, **lk_params)
