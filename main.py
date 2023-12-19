@@ -63,41 +63,38 @@ while True:
 
         if pts is not None and prev_pts is not None:
             speeds = []  # List to store speeds of keypoints
+            directions = []  # List to store direction coordinates
 
             for i, (new, old) in enumerate(zip(pts, prev_pts)):
                 a, b = new.ravel().astype(int)
                 c, d = old.ravel().astype(int)
-
+                
                 # Calculate Euclidean distance between points
                 distance = np.sqrt((c - a) ** 2 + (d - b) ** 2)
-
+                
                 # Calculate speed (distance / time)
                 speed = distance  # Assuming each frame is one unit of time (frame-to-frame distance)
                 speeds.append(speed)
+                
+                # Calculate direction coordinates
+                direction_x = c - a
+                direction_y = d - b
+                directions.append((direction_x, direction_y))
 
-                # Calculate angle of motion
-                angle = np.arctan2(d - b, c - a) * 180 / np.pi
-                if angle < 0:
-                    angle += 360
-
-                # Display angle as text at the bottom of the frame
-                cv2.putText(frame, f"Angle: {angle:.1f}", (20, frame.shape[0] - 20),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
+                # Draw an arrow to show the optical flow direction
+                mask = cv2.arrowedLine(frame, (a, b), (c, d), (0, 0, 255), 2)
 
             # Calculate average speed
             if len(speeds) > 0:
                 average_speed = np.mean(speeds)
-                cv2.putText(frame, f"Avg Speed: {average_speed:.2f} px/frame", (20, frame.shape[0] - 50),
+                cv2.putText(frame, f"Avg Speed: {average_speed:.2f} px/frame", (20, frame.shape[0] - 20),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
-
-    cv2.putText(frame, "Angle", (20, frame.shape[0] - 20),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
-    cv2.putText(frame, "Avg Speed", (20, frame.shape[0] - 50),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
-
-    prev_gray = gray.copy()
-    prev_pts = cv2.goodFeaturesToTrack(prev_gray, mask=None, maxCorners=100, qualityLevel=0.3,
-                                       minDistance=7, blockSize=7)
+            
+            # Display direction coordinates
+            if len(directions) > 0:
+                direction_x, direction_y = np.mean(np.array(directions), axis=0)
+                cv2.putText(frame, f"Direction: ({direction_x:.2f}, {direction_y:.2f})", (20, frame.shape[0] - 50),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
 
     cv2.imshow("Object_Detector", frame)
     key = cv2.waitKey(1) & 0xFF
@@ -105,12 +102,9 @@ while True:
     if key == ord("q"):
         break
 
-cap.release()
-cv2.destroyAllWindows()
-
-
-    if key == ord("q"):
-        break
+    prev_gray = gray.copy()
+    prev_pts = cv2.goodFeaturesToTrack(prev_gray, mask=None, maxCorners=100, qualityLevel=0.3,
+                                       minDistance=7, blockSize=7)
 
 cap.release()
 cv2.destroyAllWindows()
