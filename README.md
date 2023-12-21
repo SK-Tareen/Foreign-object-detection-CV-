@@ -29,7 +29,7 @@ Ultimately, the release of the video capture stream and the closure of OpenCV wi
 
 ## System Requirements:
 
-1. Webcam or camera device accessible by OpenCV.
-2. Sufficient processing power to handle real-time video processing.
-3. Adequate storage space for saving images (if applicable).
-4. An environment with the required dependencies installed.
+- Webcam or camera device accessible by OpenCV.
+- Sufficient processing power to handle real-time video processing.
+- Adequate storage space for saving images (if applicable).
+- An environment with the required dependencies installed.
