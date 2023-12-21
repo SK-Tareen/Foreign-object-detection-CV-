@@ -3,6 +3,7 @@ import cv2
 import imutils
 import datetime
 import numpy as np
+import pandas as pd
 
 # Initialize video capture, background model, and counters
 cap = cv2.VideoCapture(0)
