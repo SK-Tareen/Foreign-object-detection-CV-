@@ -33,3 +33,9 @@ Ultimately, the release of the video capture stream and the closure of OpenCV wi
 - Sufficient processing power to handle real-time video processing.
 - Adequate storage space for saving images (if applicable).
 - An environment with the required dependencies installed.
+
+## REFERENCES
+
+* "A survey of moving object detection methods: A practical perspective", by Xinyue Zhao, Guangli Wang, Zaixing He, Huilong Jiang
+* "Detecting Moving Objects Using a Novel Optical-Flow-Based Range-Independent Invariant", by Daniel Raviv, Juan D. Yepes, Ayush Gowda
+
