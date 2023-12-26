@@ -4,7 +4,7 @@ import imutils
 import datetime
 import numpy as np
 import pandas as pd
-
+import bg_model
 # Initialize video capture, background model, and counters
 cap = cv2.VideoCapture(0)  # Initialize video capture from default camera
 avg = None  # Initialize variable for the background model
