@@ -9,6 +9,7 @@ import pandas as pd
 cap = cv2.VideoCapture(0)
 avg = None
 idx = 0
+idy=0
 motionCounter = 0
 minCounter = 20
 
@@ -41,7 +42,7 @@ while True:
         avg = gray.copy().astype("float")
         continue
 
-    # Update the background model and calculate frame difference
+    # Update the background model and calculate the frame difference
     cv2.accumulateWeighted(gray, avg, 0.7)
     frameDelta = cv2.absdiff(gray, cv2.convertScaleAbs(avg))
 
