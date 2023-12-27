@@ -19,6 +19,10 @@ Ultimately, the release of the video capture stream and the closure of OpenCV wi
   <img src="https://github.com/SK-Tareen/Foreign-object-detection-CV-/assets/87571978/6861c63f-8c43-41a7-927a-4e8a1cbc2771" alt="Your Image Description" width="250" />
 </p>
 
+## RESULTS 
+![Left Moving arrow frame](<https://github.com/SK-Tareen/BEE12_CV2_Moving-Foreign-Object-Detection_Sania-Khan/blob/main/Screenshot%202023-12-28%20011042.png?raw=true>)
+![Right Moving arrow frame](<https://github.com/SK-Tareen/BEE12_CV2_Moving-Foreign-Object-Detection_Sania-Khan/blob/main/Screenshot%202023-12-28%20010747.png?raw=true>)
+The pictures show an example of how the code works.
 ## Dependencies and System Requirements:
 ## Dependencies:
 
