@@ -129,7 +129,7 @@ while True:
     prev_pts = cv2.goodFeaturesToTrack(prev_gray, mask=None, maxCorners=100, qualityLevel=0.3,
                                        minDistance=7, blockSize=7)  # Update keypoints for optical flow
 
-# Release video capture resources and close OpenCV windows
+# Release video capture resources and close OpenCV windows.
 cap.release()  # Release video capture
 cv2.destroyAllWindows()  # Close OpenCV windows
 
